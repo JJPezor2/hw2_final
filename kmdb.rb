@@ -166,106 +166,105 @@ new_actor["name"] = "Anne Hathaway"
 new_actor.save
 #puts new_actor.inspect
 
-movie = Movie.find_by[{"title"} => "Batman Begins"]
+movie = Movie.find_by({"title" => "Batman Begins"})
 #puts movie
 
-new_role = Roles.new
+new_role = Role.new
 new_role["movie_id"] = movie["id"]
 new_role["actor_id"] = (Actor.find_by({"name" => "Christian Bale"})) ["id"]
 new_role["character_name"] = "Bruce Wayne"
 new_role.save
 
-new_role = Roles.new
+new_role = Role.new
 new_role["movie_id"] = movie["id"]
 new_role["actor_id"] = (Actor.find_by({"name" => "Michael Cain"})) ["id"]
 new_role["character_name"] = "Alfred"
 new_role.save
 
-new_role = Roles.new
+new_role = Role.new
 new_role["movie_id"] = movie["id"]
 new_role["actor_id"] = (Actor.find_by({"name" => "Liam Neeson"})) ["id"]
 new_role["character_name"] = "Ra's Al Ghul"
 new_role.save
 
-new_role = Roles.new
+new_role = Role.new
 new_role["movie_id"] = movie["id"]
 new_role["actor_id"] = (Actor.find_by({"name" => "Katie Holmes"})) ["id"]
 new_role["character_name"] = "Rachel Dawes"
 new_role.save
 
-new_role = Roles.new
+new_role = Role.new
 new_role["movie_id"] = movie["id"]
 new_role["actor_id"] = (Actor.find_by({"name" => "Gary Oldman"})) ["id"]
 new_role["character_name"] = "Commissioner Gordon"
 new_role.save
 
-movie = Movie.find_by[{"title"} => "The Dark Knight"]
+movie = Movie.find_by({"title" => "The Dark Knight"})
 #puts movie
 
-new_role = Roles.new
+new_role = Role.new
 new_role["movie_id"] = movie["id"]
 new_role["actor_id"] = (Actor.find_by({"name" => "Christian Bale"})) ["id"]
 new_role["character_name"] = "Bruce Wayne"
 new_role.save
 
-new_role = Roles.new
+new_role = Role.new
 new_role["movie_id"] = movie["id"]
-new_role["actor_id"] = 6
+new_role["actor_id"] = (Actor.find_by({"name" => "Heath Ledger"})) ["id"]
 new_role["character_name"] = "Joker"
 new_role.save
 
-new_role = Roles.new
+new_role = Role.new
 new_role["movie_id"] = movie["id"]
-new_role["actor_id"] = 7
+new_role["actor_id"] = (Actor.find_by({"name" => "Aaron Eckhart"})) ["id"]
 new_role["character_name"] = "Harvey Dent"
 new_role.save
 
-new_role = Roles.new
+new_role = Role.new
 new_role["movie_id"] = movie["id"]
 new_role["actor_id"] = (Actor.find_by({"name" => "Michael Cain"})) ["id"]
 new_role["character_name"] = "Alfred"
 new_role.save
 
-new_role = Roles.new
+new_role = Role.new
 new_role["movie_id"] = movie["id"]
-new_role["actor_id"] = 8
+new_role["actor_id"] = (Actor.find_by({"name" => "Maggie Gyllenhaal"})) ["id"]
 new_role["character_name"] = "Rachel Dawes"
 new_role.save
 
-movie = Movie.find_by[{"title"} => "The Dark Knight Rises"]
+movie = Movie.find_by({"title" => "The Dark Knight Rises"})
 #puts movie
 
-new_role = Roles.new
+new_role = Role.new
 new_role["movie_id"] = movie["id"]
-new_role["actor_id"] = 1
+new_role["actor_id"] = (Actor.find_by({"name" => "Christian Bale"})) ["id"]
 new_role["character_name"] = "Bruce Wayne"
 new_role.save
 
-new_role = Roles.new
+new_role = Role.new
 new_role["movie_id"] = movie["id"]
 new_role["actor_id"] = (Actor.find_by({"name" => "Gary Oldman"})) ["id"]
 new_role["character_name"] = "Commissioner Gordon"
 new_role.save
 
-
-new_role = Roles.new
+new_role = Role.new
 new_role["movie_id"] = movie["id"]
-new_role["actor_id"] = 9
+new_role["actor_id"] = (Actor.find_by({"name" => "Tom Hardy"})) ["id"]
 new_role["character_name"] = "Bane"
 new_role.save
 
-new_role = Roles.new
+new_role = Role.new
 new_role["movie_id"] = movie["id"]
-new_role["actor_id"] = 10
+new_role["actor_id"] = (Actor.find_by({"name" => "Joseph Gordon-Levitt"})) ["id"]
 new_role["character_name"] = "John Blake"
 new_role.save
 
-new_role = Roles.new
+new_role = Role.new
 new_role["movie_id"] = movie["id"]
-new_role["actor_id"] = 10
+new_role["actor_id"] = (Actor.find_by({"name" => "Anne Hathaway"})) ["id"]
 new_role["character_name"] = "Selina Kyle"
 new_role.save
-puts new_role.inspect
+#puts new_role.inspect
 
 # Prints a header for the movies output
 puts "Movies"
@@ -276,6 +275,14 @@ puts ""
 # TODO!
 
 movies = Movie.all
+for each in movies
+    title = each["title"]
+    year_released = each["year_released"]
+    rating = each["rated"]
+    studio = Studio.find_by({"id" => each["studio_id"] })
+    studio_name = studio ["name"]
+    puts "#{title} #{year_released} #{rating} #{studio_name}"
+end
 
 
 # Prints a header for the cast output
@@ -287,6 +294,13 @@ puts ""
 # Query the cast data and loop through the results to display the cast output for each movie.
 # TODO!
 
-roles - Role.all
-for each 
+roles = Role.all
+for each in roles
+    movie = Movie.find_by({"id" => each["movie_id"]})
+    movie_title = movie ["title"]
+    actor = Actor.find_by({"id" => each ["actor_id"]})
+    actor_name = actor ["name"]
+    character_name = each["character_name"]
+    puts "#{movie_title} #{actor_name} #{character_name}"
+end
 
